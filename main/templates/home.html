@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <title>Images Market</title>
+    <style>
+      .aa
+      {
+      background:#3f51b5!important;
+      }
+    </style>
+  </head>
+  <body>
+      {% include 'navbar.html' %}
+      <!--main code-->
+      <div class="container-fluid">
+      <div class="row">
+
+      <div class="col-md-2">
+      <!--CATEGORIES-->
+          <div class="list-group mt-5">
+              <h2><b>Categories</b></h2>
+          <a href="/" class="list-group-item list-group-item-action active">
+                   ALL
+          </a>
+              {% for value in cat %}
+          <a href="/category/{{value.pk}}" class="list-group-item list-group-item-action">{{value.title}}</a>
+              {% endfor %}
+          </div>
+
+      </div>
+
+        <div class="col-md-10">
+           <!--IMAGES-->
+            <div class="row mt-5">
+                <div class="col-md-12">
+                    <div class="card-columns">
+                    {% for value in im %}
+                    <div class="card">
+  <img class="card-img-top" src="/media/{{value.image}}" alt="Card image cap">
+  <div class="card-body">
+    <h5 class="card-title">{{value.title}}</h5>
+    <p class="card-text">{{value.desc}}</p>
+    <a href="#" class="btn btn-primary" onclick="show('{{value.image}}')">SEE</a>
+  </div>
+</div>
+                    {% endfor %}
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="Modal_Image" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Images Market</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body text-center">
+        <img src="#" id="img_show" class="img-fluid">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+  <script>
+      function show(URL)
+      {
+        $('#Modal_Image').modal('show')
+        $("#img_show").attr('src',`/media/${URL}`)
+      }
+  </script>
+  </body>
+</html>
